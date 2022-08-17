@@ -2,7 +2,7 @@
   <div class="login">
     <!-- 头部信息展示区 -->
     <div class="header">
-      <div class="title">小白点餐</div>
+      <div class="title">小白居家生活</div>
     </div>
     <!-- 登录区域 -->
     <div class="loginArea">
@@ -55,7 +55,7 @@ import { Toast } from "vant";
 export default {
   data() {
     return {
-      username: "admin1",
+      username: "admin",
       password: "123321",
     };
   },
@@ -70,11 +70,11 @@ export default {
         password: this.password,
       };
       // 发送登录验证请求
-      let res = await post_json("/user/login", params);
-      // console.log(res);
+      let res = await post_json("/logon", params);
+      console.log(res);
       if (res.data.status == 200) {
         // 保存token
-        this.setToken({ token: res.data.data.token });
+        this.setToken({ token: res.data.data });
         // 跳转到首页
         this.$router.push("/manager/home");
       } else {

@@ -1,7 +1,7 @@
 /*
  * @Author: LuZeng
  * @Date: 2022-08-10 19:33:20
- * @LastEditTime: 2022-08-12 09:41:18
+ * @LastEditTime: 2022-08-16 16:44:28
  * @LastEditors: LuZeng
  * @Description: 小白本白，写的不好多多包涵！！！
  * @FilePath: \ThreeNoded:\rjiananzhuang\WEB\WEB workspace\实训三\练习\briup-wisdom-order\src\store\home\home.js
@@ -34,7 +34,7 @@ export default {
   actions: {
     // 请求后台将获取到的数据信息交给mutation进行下一步赋值操作
     async getSwiperData({ commit }) {
-      let res = await get("/carousel/findAll");
+      let res = await get("/products/findAll");
       commit("SET_swiperData", res.data.data);
     },
   },

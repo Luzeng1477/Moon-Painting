@@ -2,7 +2,7 @@
   <div class="login">
     <!-- 头部信息展示区 -->
     <div class="header">
-      <div class="title">小白点餐</div>
+      <div class="title">小白居家生活</div>
     </div>
     <!-- 登录区域 -->
     <div class="loginArea">

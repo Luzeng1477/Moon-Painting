@@ -1,10 +1,10 @@
 <!--
  * @Author: LuZeng
  * @Date: 2022-08-08 19:11:19
- * @LastEditTime: 2022-08-14 16:36:06
+ * @LastEditTime: 2022-08-16 19:40:26
  * @LastEditors: LuZeng
  * @Description: 小白本白，写的不好多多包涵！！！
- * @FilePath: \ThreeNoded:\rjiananzhuang\WEB\WEB workspace\实训三\练习\briup-wisdom-order\src\views\Home\home.vue
+ * @FilePath: \jsd:\rjiananzhuang\WEB\WEB workspace\实训三\练习\briup-wisdom-order\src\views\Home\home.vue
  * 别乱动！
 -->
 <template>
@@ -13,41 +13,19 @@
     <div class="nav">
       <h1>小白居家生活</h1>
       <div class="swipe">
-        <img src="../../assets/lun.jpg" alt="" srcset="" />
+        <img src="../../assets/xuanchuan.png" alt="" srcset="" />
       </div>
     </div>
 
     <!-- 功能区域  -->
     <van-grid class="options" column-num="5">
       <van-grid-item
+        v-for="item in text"
+        :key="item.id"
         class="single"
-        icon="wap-home-o"
-        text="家庭保洁"
-        @click="toProductPage()"
-      />
-      <van-grid-item
-        class="single"
-        icon="brush-o"
-        text="衣物护理"
-        @click="toProductPage()"
-      />
-      <van-grid-item
-        class="single"
-        icon="like-o"
-        text="母爱陪护"
-        @click="toProductPage()"
-      />
-      <van-grid-item
-        class="single"
-        icon="setting-o"
-        text="家具养护"
-        @click="toProductPage()"
-      />
-      <van-grid-item
-        class="single"
-        icon="cashier-o"
-        text="家电清洗"
-        @click="toProductPage()"
+        :icon="item.icon"
+        :text="item.name"
+        @click="toProductPage(item.name)"
       />
     </van-grid>
 
@@ -59,8 +37,10 @@
         :key="item.id"
         @click="getProductDetail(item.id)"
       >
-        <img src="../../assets/qingjie.webp" alt="" srcset="" />
+        <img :src="item.photo" alt="" />
         <p>{{ item.name }}</p>
+        <span class="price">￥{{ item.price }}</span>
+        <span class="collect">{{ item.pay_people }}人付款</span>
       </div>
     </div>
 
@@ -75,24 +55,29 @@ export default {
     return {
       page: 1,
       pageSize: 5,
+      text: [
+        { name: "家庭保洁", icon: "wap-home-o", id: 1 },
+        { name: "衣物护理", icon: "brush-o", id: 2 },
+        { name: "亲情陪伴", icon: "like-o", id: 3 },
+        { name: "家具养护", icon: "setting-o", id: 4 },
+        { name: "家电清洗", icon: "cashier-o", id: 5 },
+      ],
     };
   },
   created() {
-    this.getSwiperData();
     this.getHomeProductData();
   },
   computed: {
-    ...mapState("home", ["swiperData"]),
-    ...mapState("product", ["homeProductData", "productDetailData"]),
+    ...mapState("product", ["homeProductData"]),
   },
   methods: {
-    ...mapActions("home", ["getSwiperData"]),
-    ...mapActions("product", ["getHomeProductData", "getProductDetailById"]),
+    ...mapActions("product", ["getHomeProductData"]),
     // 跳转到产品页面
-    toProductPage() {
+    toProductPage(name) {
       // 页面跳转
       this.$router.push({
         path: "product",
+        query: { name },
       });
     },
   },
@@ -112,7 +97,7 @@ a {
 .main {
   width: 100%;
   height: 100%;
-  background-color: #fbfaf5;
+  background-color: #f0f0f0;
   .nav {
     position: relative;
     width: 100%;
@@ -147,7 +132,7 @@ a {
 // 选项区域
 .options {
   margin-top: 80px;
-  color: #ffd900;
+  color: #ef9d00;
   background-color: #fbfaf5;
 }
 
@@ -160,21 +145,30 @@ a {
   justify-content: space-around;
   .bigPig-zzy {
     overflow: hidden;
-    width: 40%;
+    width: 47%;
     height: 200px;
     margin-top: 10px;
     box-shadow: 0 0 5px 0 rgba(234, 218, 255, 1);
     border-radius: 5px;
+    background-color: #fff;
     img {
       width: 100%;
       height: 150px;
-      border-radius: 5px;
     }
     p {
       color: #524e4d;
-      font-size: 20px;
-      text-align: center;
-      line-height: 45px;
+      font-size: 14px;
+      margin-left: 10px;
+    }
+    .price {
+      color: #e92600;
+      margin-left: 5px;
+    }
+    .collect {
+      float: right;
+      margin-right: 10px;
+      font-size: 12px;
+      color: #afafb0;
     }
   }
 }

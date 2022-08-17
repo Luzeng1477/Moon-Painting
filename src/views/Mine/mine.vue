@@ -1,7 +1,7 @@
 <!--
  * @Author: LuZeng
  * @Date: 2022-08-08 19:11:19
- * @LastEditTime: 2022-08-14 16:17:26
+ * @LastEditTime: 2022-08-15 14:11:52
  * @LastEditors: LuZeng
  * @Description: 小白本白，写的不好多多包涵！！！
  * @FilePath: \ThreeNoded:\rjiananzhuang\WEB\WEB workspace\实训三\练习\briup-wisdom-order\src\views\Mine\mine.vue
@@ -21,8 +21,10 @@
         <div class="head_img">
           <img src="../../assets/katong.jpeg" alt="" srcset="" />
         </div>
-        <div class="card">admin1</div>
-        <div class="growth"><h3>成长中心&nbsp;></h3></div>
+        <div class="card" style="color: #727171">admin1</div>
+        <div class="growth">
+          <h3 style="color: #727171">成长中心&nbsp;></h3>
+        </div>
       </div>
       <div class="info_footer">
         <p>账户余额：</p>
@@ -94,7 +96,7 @@ a {
 }
 .mian {
   overflow: hidden;
-  background-color: #f3f3f3;
+  background-color: #f0f0f0;
   width: 100%;
   height: 807px;
 }
@@ -164,7 +166,7 @@ a {
       display: inline-block;
       width: 80px;
       line-height: 56px;
-      color: #ea5506;
+      color: #ef9d00;
       font-size: 24px;
     }
     button {
@@ -174,7 +176,7 @@ a {
       border: 0;
       border-radius: 25px;
       color: #fff;
-      background-color: #ea5506;
+      background-color: #ef9d00;
     }
   }
 }
@@ -194,13 +196,14 @@ a {
 
     li {
       height: 37px;
-      background-color: #ffe52d;
+      // background-color: #ffe52d;
+      background-color: #fef162;
       line-height: 37px;
-      color: #fff;
+      color: #727171;
       font-size: 20px;
       .icon {
         margin-right: 10px;
-        color: #ec6800;
+        color: #ef9d00;
         margin-left: 10px;
       }
       span {
@@ -216,7 +219,7 @@ a {
   display: block;
   margin: 30px auto;
   border: 0;
-  background-color: #ffd900;
+  background-color: #f6d200;
   color: #fff;
   width: 160px;
   height: 40px;

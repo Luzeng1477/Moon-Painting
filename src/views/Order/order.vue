@@ -1,7 +1,7 @@
 <!--
  * @Author: LuZeng
  * @Date: 2022-08-08 19:11:19
- * @LastEditTime: 2022-08-14 15:56:16
+ * @LastEditTime: 2022-08-15 15:15:08
  * @LastEditors: LuZeng
  * @Description: 小白本白，写的不好多多包涵！！！
  * @FilePath: \ThreeNoded:\rjiananzhuang\WEB\WEB workspace\实训三\练习\briup-wisdom-order\src\views\Order\order.vue
@@ -9,13 +9,13 @@
 -->
 <template>
   <div class="main">
-    <p class="tittle">订单</p>
+    <p class="tittle" style="color: #727171">订单</p>
     <div class="classify">
       <van-tabs
         animated
         class="nav"
-        title-active-color="#fef263"
-        color="#fef263"
+        title-active-color="#EF9D00"
+        color="#EF9D00  "
       >
         <van-tab class="whole w" title="全部订单">
           <van-card
@@ -80,7 +80,7 @@ a {
   color: black;
 }
 .main {
-  background-color: #fafafa;
+  background-color: #f0f0f0;
   height: 807px;
 }
 .tittle {

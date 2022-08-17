@@ -8,17 +8,17 @@ Vue.use(Toast);
 
 let token = "";
 // 1. 基础路径
-axios.defaults.baseURL = "http://39.108.229.103:8002/";
+axios.defaults.baseURL = "http://127.0.0.1:7001/";
 axios.defaults.headers.post["Content-Type"] = "application/json"; //配置请求头
 
 // http request拦截器 添加一个请求拦截器
 axios.interceptors.request.use(
   function(config) {
     let token = localStorage.getItem("token");
-    if (token) {
-      //将token放到请求头发送给服务器,将token放在请求头中
-      config.headers["Authorization"] = token;
-    }
+    // if (token) {
+    //将token放到请求头发送给服务器,将token放在请求头中
+    config.headers["Authorization"] = token;
+    // }
     return config;
   },
   function(error) {
