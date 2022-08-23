@@ -1,7 +1,7 @@
 <!--
  * @Author: LuZeng
  * @Date: 2022-08-17 19:04:51
- * @LastEditTime: 2022-08-23 00:05:55
+ * @LastEditTime: 2022-08-23 19:01:58
  * @LastEditors: LuZeng
  * @Description: 小白本白，写的不好多多包涵！！！
  * @FilePath: \jsd:\rjiananzhuang\WEB\WEB workspace\实训三\练习\briup-wisdom-order\src\views\Product\productDetail.vue
@@ -84,7 +84,7 @@
   </div>
 </template>
 <script>
-import { mapActions, mapState } from "vuex";
+import { mapActions, mapMutations, mapState } from "vuex";
 import { Toast } from "vant";
 export default {
   data() {
@@ -95,17 +95,22 @@ export default {
   },
   created() {
     this.id = this.$route.query.id;
+    this.SET_UserName();
     this.getProductId();
   },
   computed: {
     ...mapState("product", ["productDetailData"]),
     ...mapState("user", ["userName"]),
     ...mapState("shopping", ["massage"]),
+    ...mapState("shopping", ["addCartMassage"]),
+    ...mapState("order", ["userName"]),
   },
   methods: {
     // 调用仓库根据id查询商品信息方法getProductDetailById
+    ...mapMutations("order", ["SET_UserName"]),
     ...mapActions("product", ["getProductDetailById"]),
     ...mapActions("shopping", ["updateProduct"]),
+    ...mapActions("shopping", ["updateCart"]),
     // 传递id参数
     getProductId() {
       let params = {
@@ -116,7 +121,7 @@ export default {
     // 点击购买事件
     toBuy() {
       let params = {
-        userName: "admin",
+        userName: this.userName,
         productInfo: {
           id: this.productDetailData.id,
           name: this.productDetailData.name,
@@ -129,6 +134,23 @@ export default {
       };
       this.updateProduct(params);
       Toast.success(this.massage);
+    },
+    // 点击添加购物车事件
+    addCart() {
+      let params = {
+        userName: this.userName,
+        productInfo: {
+          id: this.productDetailData.id,
+          name: this.productDetailData.name,
+          price: this.productDetailData.price,
+          introduce: this.productDetailData.inrtoduce,
+          photo: this.productDetailData.photo,
+          type: "购物车",
+          num: 1,
+        },
+      };
+      this.updateCart(params);
+      Toast.success(this.addCartMassage);
     },
     // 返回点击事件
     onClickLeft() {
