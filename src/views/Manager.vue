@@ -1,10 +1,10 @@
 <!--
  * @Author: LuZeng
  * @Date: 2022-08-08 19:11:19
- * @LastEditTime: 2022-08-09 18:46:42
+ * @LastEditTime: 2022-08-21 10:53:28
  * @LastEditors: LuZeng
  * @Description: 小白本白，写的不好多多包涵！！！
- * @FilePath: \ThreeNoded:\rjiananzhuang\WEB\WEB workspace\实训三\练习\briup-wisdom-order\src\views\Manager.vue
+ * @FilePath: \jsd:\rjiananzhuang\WEB\WEB workspace\实训三\练习\briup-wisdom-order\src\views\Manager.vue
  * 别乱动！
 -->
 <template>

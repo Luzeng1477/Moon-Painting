@@ -1,7 +1,7 @@
 <!--
  * @Author: LuZeng
  * @Date: 2022-08-08 19:11:19
- * @LastEditTime: 2022-08-16 19:40:26
+ * @LastEditTime: 2022-08-21 10:16:54
  * @LastEditors: LuZeng
  * @Description: 小白本白，写的不好多多包涵！！！
  * @FilePath: \jsd:\rjiananzhuang\WEB\WEB workspace\实训三\练习\briup-wisdom-order\src\views\Home\home.vue
@@ -11,7 +11,7 @@
   <div class="main">
     <!-- 头部区域 -->
     <div class="nav">
-      <h1>小白居家生活</h1>
+      <h1>Xiaobai Shopping</h1>
       <div class="swipe">
         <img src="../../assets/xuanchuan.png" alt="" srcset="" />
       </div>
@@ -56,11 +56,11 @@ export default {
       page: 1,
       pageSize: 5,
       text: [
-        { name: "家庭保洁", icon: "wap-home-o", id: 1 },
-        { name: "衣物护理", icon: "brush-o", id: 2 },
-        { name: "亲情陪伴", icon: "like-o", id: 3 },
-        { name: "家具养护", icon: "setting-o", id: 4 },
-        { name: "家电清洗", icon: "cashier-o", id: 5 },
+        { name: "家用电器", icon: "wap-home-o", id: 1 },
+        { name: "器械工具", icon: "brush-o", id: 2 },
+        { name: "穿着衣物", icon: "like-o", id: 3 },
+        { name: "风景盆栽", icon: "setting-o", id: 4 },
+        { name: "日常除虫", icon: "cashier-o", id: 5 },
       ],
     };
   },
@@ -78,6 +78,14 @@ export default {
       this.$router.push({
         path: "product",
         query: { name },
+      });
+    },
+    // 跳至商品详情页面
+    getProductDetail(id) {
+      // 页面跳转
+      this.$router.push({
+        path: "ProductDetail",
+        query: { id },
       });
     },
   },

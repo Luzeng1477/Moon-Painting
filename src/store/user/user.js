@@ -1,20 +1,22 @@
-import { get, post, post_json } from '@/http/axios'
+/*
+ * @Author: LuZeng
+ * @Date: 2022-08-08 19:11:18
+ * @LastEditTime: 2022-08-23 10:12:33
+ * @LastEditors: LuZeng
+ * @Description: 小白本白，写的不好多多包涵！！！
+ * @FilePath: \jsd:\rjiananzhuang\WEB\WEB workspace\实训三\练习\briup-wisdom-order\src\store\user\user.js
+ * 别乱动！
+ */
+import { get, post, post_json } from "@/http/axios";
 export default {
   namespaced: true,
   state: {
-    userInfo: {}
+    userName: " ",
   },
   mutations: {
-    SET_UserInfo(state, userInfo){
-      state.userInfo = userInfo
-    }
+    SET_UserInfo(state, userName) {
+      state.userName = userName;
+      localStorage.setItem("userName", userName);
+    },
   },
-  actions: {
-    // 获取用户信息
-    async getUserInfo({commit}, params) {
-      let res = await get('/user/info?token='+localStorage.getItem('token'))
-      commit('SET_UserInfo', res.data.data)
-      // console.log(res);
-    }
-  }
-}
+};

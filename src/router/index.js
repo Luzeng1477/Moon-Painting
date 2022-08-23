@@ -36,12 +36,6 @@ const routes = [
       {
         path: "home",
         component: () => import("@/views/Home/home.vue"),
-        children: [
-          {
-            path: "product",
-            component: () => import("@/views/Product/product.vue"),
-          },
-        ],
       },
       // 订单
       {
@@ -58,12 +52,6 @@ const routes = [
       {
         path: "mine",
         component: () => import("@/views/Mine/mine.vue"),
-        children: [
-          {
-            path: "address",
-            component: () => import("@/views/Mine/address.vue"),
-          },
-        ],
       },
       // 地址列表
       {
@@ -74,6 +62,11 @@ const routes = [
       {
         path: "product",
         component: () => import("@/views/Product/product.vue"),
+      },
+      // 产品详情
+      {
+        path: "ProductDetail",
+        component: () => import("@/views/Product/productDetail.vue"),
       },
       // 订单提交页面
       {

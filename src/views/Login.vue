@@ -2,7 +2,7 @@
   <div class="login">
     <!-- 头部信息展示区 -->
     <div class="header">
-      <div class="title">小白居家生活</div>
+      <div class="title">Xiaobai Shopping</div>
     </div>
     <!-- 登录区域 -->
     <div class="loginArea">
@@ -62,6 +62,7 @@ export default {
   methods: {
     // 引入vuex中的mutations
     ...mapMutations(["setToken"]),
+    ...mapMutations("user", ["SET_UserInfo"]),
     // 登录
     async onSubmit(values) {
       // 配置参数
@@ -71,10 +72,12 @@ export default {
       };
       // 发送登录验证请求
       let res = await post_json("/logon", params);
-      console.log(res);
       if (res.data.status == 200) {
+        console.log(res.data);
         // 保存token
         this.setToken({ token: res.data.data });
+        // 先将用户名保存到状态机，后面用到可以直接调用
+        this.SET_UserInfo(this.username);
         // 跳转到首页
         this.$router.push("/manager/home");
       } else {

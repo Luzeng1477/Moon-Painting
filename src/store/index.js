@@ -2,7 +2,7 @@
  * @Author: [kangjie]
  * @Date: 2022-04-23 21:44:50
  * @LastEditors: LuZeng
- * @LastEditTime: 2022-08-12 14:40:39
+ * @LastEditTime: 2022-08-22 23:12:37
  * @Description:
  */
 import Vue from "vue";
@@ -15,6 +15,10 @@ import user from "./user/user";
 import home from "./home/home";
 // 引入主页商品模块
 import product from "./product/product";
+// 引入购物模块
+import shopping from "./shopping/shoppping";
+// 引入订单模块
+import order from "./order/order";
 Vue.use(Vuex);
 
 export default new Vuex.Store({
@@ -42,7 +46,11 @@ export default new Vuex.Store({
     user,
     // 主页模块
     home,
-    // 主页商品模块
+    // 商品模块
     product,
+    // 购物模块
+    shopping,
+    // 订单模块
+    order,
   },
 });
