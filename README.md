@@ -1,4 +1,4 @@
-# briup-wisdom-order
+# Xiaobai Shopping
 
 ## Project setup
 ```
