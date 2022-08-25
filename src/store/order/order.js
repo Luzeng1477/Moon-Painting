@@ -1,7 +1,7 @@
 /*
  * @Author: LuZeng
  * @Date: 2022-08-22 22:52:05
- * @LastEditTime: 2022-08-23 19:41:39
+ * @LastEditTime: 2022-08-25 19:30:00
  * @LastEditors: LuZeng
  * @Description: 小白本白，写的不好多多包涵！！！
  * @FilePath: \jsd:\rjiananzhuang\WEB\WEB workspace\实训三\练习\briup-wisdom-order\src\store\order\order.js
@@ -12,11 +12,11 @@ export default {
   namespaced: true,
   state: {
     // 订单列表
-    orderList: " ",
+    orderList: [],
     // 当前登录用户名
     userName: " ",
     // 购物车信息
-    cartList: " ",
+    cartList: [],
   },
   mutations: {
     // 当前登录用户名

@@ -1,7 +1,7 @@
 <!--
  * @Author: LuZeng
  * @Date: 2022-08-08 19:11:19
- * @LastEditTime: 2022-08-21 10:16:54
+ * @LastEditTime: 2022-08-25 20:00:21
  * @LastEditors: LuZeng
  * @Description: 小白本白，写的不好多多包涵！！！
  * @FilePath: \jsd:\rjiananzhuang\WEB\WEB workspace\实训三\练习\briup-wisdom-order\src\views\Home\home.vue
@@ -11,7 +11,7 @@
   <div class="main">
     <!-- 头部区域 -->
     <div class="nav">
-      <h1>Xiaobai Shopping</h1>
+      <h1>Moon Painting</h1>
       <div class="swipe">
         <img src="../../assets/xuanchuan.png" alt="" srcset="" />
       </div>
@@ -37,7 +37,7 @@
         :key="item.id"
         @click="getProductDetail(item.id)"
       >
-        <img :src="item.photo" alt="" />
+        <img :data-url="item.photo" :src="item.photo" alt="" />
         <p>{{ item.name }}</p>
         <span class="price">￥{{ item.price }}</span>
         <span class="collect">{{ item.pay_people }}人付款</span>
@@ -154,14 +154,14 @@ a {
   .bigPig-zzy {
     overflow: hidden;
     width: 47%;
-    height: 200px;
+    height: 250px;
     margin-top: 10px;
     box-shadow: 0 0 5px 0 rgba(234, 218, 255, 1);
     border-radius: 5px;
     background-color: #fff;
     img {
       width: 100%;
-      height: 150px;
+      height: 200px;
     }
     p {
       color: #524e4d;

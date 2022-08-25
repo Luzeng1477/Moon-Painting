@@ -1,7 +1,7 @@
 <!--
  * @Author: LuZeng
  * @Date: 2022-08-08 19:11:19
- * @LastEditTime: 2022-08-21 10:42:13
+ * @LastEditTime: 2022-08-25 10:48:41
  * @LastEditors: LuZeng
  * @Description: 小白本白，写的不好多多包涵！！！
  * @FilePath: \jsd:\rjiananzhuang\WEB\WEB workspace\实训三\练习\briup-wisdom-order\src\views\Product\product.vue
@@ -40,31 +40,34 @@
 
 <script>
 import { mapActions, mapState } from "vuex";
+import { get } from "@/http/axios";
 export default {
   data() {
     return {
       name: "",
+      productData: "",
     };
   },
   created() {
     this.name = this.$route.query.name;
-    this.getProductsName();
-  },
-  computed: {
-    ...mapState("product", ["productData"]),
+    // this.getProductsName();
+    this.loadProduct();
   },
   methods: {
-    // 调用仓库方法，根据name查询商品信息
-    ...mapActions("product", ["getProductDataByProductCategoryId"]),
-    // 传参name
-    getProductsName() {
-      let params = {
-        name: this.name,
-      };
-      this.getProductDataByProductCategoryId(params);
+    async loadProduct() {
+      let res = await get("/products/findName", { name: this.name });
+      this.productData = res.data.data;
     },
     onClickLeft() {
       this.$router.go(-1);
+    },
+    // 跳至商品详情页面
+    getProductDetail(id) {
+      // 页面跳转
+      this.$router.push({
+        path: "ProductDetail",
+        query: { id },
+      });
     },
   },
 };

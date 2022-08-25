@@ -1,10 +1,10 @@
 <!--
  * @Author: LuZeng
  * @Date: 2022-08-08 19:11:19
- * @LastEditTime: 2022-08-15 14:11:52
+ * @LastEditTime: 2022-08-25 13:58:39
  * @LastEditors: LuZeng
  * @Description: 小白本白，写的不好多多包涵！！！
- * @FilePath: \ThreeNoded:\rjiananzhuang\WEB\WEB workspace\实训三\练习\briup-wisdom-order\src\views\Mine\mine.vue
+ * @FilePath: \jsd:\rjiananzhuang\WEB\WEB workspace\实训三\练习\briup-wisdom-order\src\views\Mine\mine.vue
  * 别乱动！
 -->
 <template>
@@ -18,10 +18,10 @@
     <!-- 信息卡片 -->
     <div class="info w">
       <div class="info_top">
-        <div class="head_img">
+        <div class="head_img" @click="goPersonalData()">
           <img src="../../assets/katong.jpeg" alt="" srcset="" />
         </div>
-        <div class="card" style="color: #727171">admin1</div>
+        <div class="card" style="color: #727171">{{ username }}</div>
         <div class="growth">
           <h3 style="color: #727171">成长中心&nbsp;></h3>
         </div>
@@ -59,13 +59,28 @@
 </template>
 
 <script>
+import { mapActions, mapState } from "vuex";
 export default {
   data() {
-    return {};
+    return {
+      username: " ",
+    };
   },
-  created() {},
-  computed: {},
+  created() {
+    this.getUserName();
+  },
   methods: {
+    // 获取当前登录用户名
+    getUserName() {
+      this.username = localStorage.getItem("userName");
+    },
+    // 调到个人信息组件
+    goPersonalData() {
+      this.$router.push({
+        path: "personalData",
+      });
+    },
+    // 跳到常用地址组件
     toAddress() {
       this.$router.push({
         path: "address",
@@ -98,7 +113,7 @@ a {
   overflow: hidden;
   background-color: #f0f0f0;
   width: 100%;
-  height: 807px;
+  height: 848px;
 }
 // 设置客服模块
 .setting {

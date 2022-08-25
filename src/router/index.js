@@ -68,6 +68,11 @@ const routes = [
         path: "ProductDetail",
         component: () => import("@/views/Product/productDetail.vue"),
       },
+      // 个人信息界面
+      {
+        path: "personalData",
+        component: () => import("@/views/Mine/personalData.vue"),
+      },
       // 订单提交页面
       {
         path: "orderConfirm",

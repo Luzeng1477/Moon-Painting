@@ -2,7 +2,7 @@
   <div class="login">
     <!-- 头部信息展示区 -->
     <div class="header">
-      <div class="title">Xiaobai Shopping</div>
+      <div class="title">Moon Painting</div>
     </div>
     <!-- 登录区域 -->
     <div class="loginArea">

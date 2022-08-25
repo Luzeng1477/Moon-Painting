@@ -1,7 +1,7 @@
 /*
  * @Author: LuZeng
  * @Date: 2022-08-21 16:48:54
- * @LastEditTime: 2022-08-23 18:44:49
+ * @LastEditTime: 2022-08-24 09:20:10
  * @LastEditors: LuZeng
  * @Description: 小白本白，写的不好多多包涵！！！
  * @FilePath: \jsd:\rjiananzhuang\WEB\WEB workspace\实训三\练习\briup-wisdom-order\src\store\shopping\shoppping.js
@@ -39,7 +39,6 @@ export default {
     async updateCart({ commit }, params) {
       let res = await get("/shopping/addCart", params);
       let { data } = res;
-      console.log(res);
       commit("SET_AddCartMassage", data);
     },
   },

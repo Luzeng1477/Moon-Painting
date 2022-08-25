@@ -1,7 +1,7 @@
 <!--
  * @Author: LuZeng
  * @Date: 2022-08-17 19:04:51
- * @LastEditTime: 2022-08-23 19:01:58
+ * @LastEditTime: 2022-08-25 10:35:46
  * @LastEditors: LuZeng
  * @Description: 小白本白，写的不好多多包涵！！！
  * @FilePath: \jsd:\rjiananzhuang\WEB\WEB workspace\实训三\练习\briup-wisdom-order\src\views\Product\productDetail.vue
@@ -85,12 +85,14 @@
 </template>
 <script>
 import { mapActions, mapMutations, mapState } from "vuex";
+import { get } from "@/http/axios";
 import { Toast } from "vant";
 export default {
   data() {
     return {
       id: " ",
       title: "服务详情",
+      productDetailData: {},
     };
   },
   created() {
@@ -99,7 +101,7 @@ export default {
     this.getProductId();
   },
   computed: {
-    ...mapState("product", ["productDetailData"]),
+    // ...mapState("product", ["productDetailData"]),
     ...mapState("user", ["userName"]),
     ...mapState("shopping", ["massage"]),
     ...mapState("shopping", ["addCartMassage"]),
@@ -107,16 +109,21 @@ export default {
   },
   methods: {
     // 调用仓库根据id查询商品信息方法getProductDetailById
+    // 获取username
     ...mapMutations("order", ["SET_UserName"]),
+    // 通过id查询商品信息
     ...mapActions("product", ["getProductDetailById"]),
     ...mapActions("shopping", ["updateProduct"]),
     ...mapActions("shopping", ["updateCart"]),
     // 传递id参数
-    getProductId() {
+    async getProductId() {
       let params = {
         id: this.id,
       };
-      this.getProductDetailById(params);
+      // this.getProductDetailById(params);
+      let res = await get("/products/findId", params);
+      let { data } = res.data;
+      this.productDetailData = data;
     },
     // 点击购买事件
     toBuy() {
