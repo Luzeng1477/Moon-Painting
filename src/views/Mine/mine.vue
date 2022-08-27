@@ -1,7 +1,7 @@
 <!--
  * @Author: LuZeng
  * @Date: 2022-08-08 19:11:19
- * @LastEditTime: 2022-08-25 13:58:39
+ * @LastEditTime: 2022-08-26 18:48:05
  * @LastEditors: LuZeng
  * @Description: 小白本白，写的不好多多包涵！！！
  * @FilePath: \jsd:\rjiananzhuang\WEB\WEB workspace\实训三\练习\briup-wisdom-order\src\views\Mine\mine.vue
@@ -54,12 +54,11 @@
     </div>
 
     <!-- 退出登录模块 -->
-    <button class="retreat">退出登录</button>
+    <button class="retreat" @click="$router.push('/login')">退出登录</button>
   </div>
 </template>
 
 <script>
-import { mapActions, mapState } from "vuex";
 export default {
   data() {
     return {
@@ -77,13 +76,13 @@ export default {
     // 调到个人信息组件
     goPersonalData() {
       this.$router.push({
-        path: "personalData",
+        path: "/personalData",
       });
     },
     // 跳到常用地址组件
     toAddress() {
       this.$router.push({
-        path: "address",
+        path: "/personalData",
       });
     },
   },
@@ -113,7 +112,7 @@ a {
   overflow: hidden;
   background-color: #f0f0f0;
   width: 100%;
-  height: 848px;
+  height: 100vh;
 }
 // 设置客服模块
 .setting {

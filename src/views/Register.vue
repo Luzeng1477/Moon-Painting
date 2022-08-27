@@ -70,11 +70,11 @@ export default {
     };
   },
   methods: {
-    ...mapActions("register", ["toRegister"]),
+    // ...mapActions("register", ["toRegister"]),
     onClickLeft() {
       this.$router.go(-1);
     },
-    onSubmit() {
+    async onSubmit() {
       if (this.password != this.confirmPwd) {
         Toast("两次密码输入不一致,请重新输入！");
       } else {
@@ -84,11 +84,19 @@ export default {
           password: this.password,
         };
         // 调用注册请求
-        this.toRegister(params);
-        Toast("注册成功");
-        setTimeout(() => {
-          this.$router.go(-1);
-        }, 1500);
+        let res = await post("/user/register", params);
+        console.log(res.data.message);
+        if (res.data.message == "注册成功") {
+          Toast.success(res.data.message);
+          setTimeout(() => {
+            this.$router.go(-1);
+          }, 1500);
+        } else {
+          Toast.fail(res.data.message);
+        }
+        // setTimeout(() => {
+        //   this.$router.go(-1);
+        // }, 1500);
       }
     },
     // 跳转到登录

@@ -1,7 +1,7 @@
 <!--
  * @Author: LuZeng
  * @Date: 2022-08-08 19:11:19
- * @LastEditTime: 2022-08-25 19:42:01
+ * @LastEditTime: 2022-08-26 19:53:55
  * @LastEditors: LuZeng
  * @Description: 小白本白，写的不好多多包涵！！！
  * @FilePath: \jsd:\rjiananzhuang\WEB\WEB workspace\实训三\练习\briup-wisdom-order\src\views\Order\order.vue
@@ -17,7 +17,8 @@
         title-active-color="#EF9D00"
         color="#EF9D00  "
       >
-        <van-tab class="unpaid w" title="购物车">
+        <!-- 购物车  -->
+        <van-tab class="unpaid" style="overflow: scroll" title="购物车">
           <!-- 自定义商品卡片 -->
           <div
             class="product_card card"
@@ -49,10 +50,10 @@
             :price="settlement"
             button-text="结算"
             bind:submit="onSubmit"
-            style="position: absolute"
           />
         </van-tab>
-        <van-tab class="whole w" title="待发货">
+        <!-- 待发货 -->
+        <van-tab class="whole" style="overflow: scroll" title="待发货">
           <!-- 自定义商品卡片 -->
           <div
             class="product_card card"
@@ -79,7 +80,8 @@
             </div>
           </div>
         </van-tab>
-        <van-tab class="complete w" title="已完成">
+        <!-- 已完成订单信息 -->
+        <van-tab class="complete" style="overflow: scroll" title="已完成">
           <!-- 自定义商品卡片 -->
           <div
             v-for="item in completedList"
@@ -87,12 +89,12 @@
             class="product_card card"
           >
             <div class="card_left">
-              <img :src="item.photo" alt="" srcset="" />
+              <img :src="item.photo" />
             </div>
             <div class="card_right">
               <div class="cartRight_top">
                 <h3>{{ item.name }}</h3>
-                <span>删除</span>
+                <span @click="deleteCompleted(item.name)">删除</span>
               </div>
               <div class="cartRight_center">
                 {{ item.introduce }}
@@ -184,7 +186,21 @@ export default {
       let { data } = res;
       if (data.message == "删除成功") {
         this.getcartList();
-        Toast.success("删除成功");
+        Toast.success("商品删除成功");
+      }
+    },
+
+    // 删除已完成订单
+    async deleteCompleted(itemname) {
+      let params = {
+        username: this.userName,
+        comname: itemname,
+      };
+      let res = await get("/order/deleteCompleted", params);
+      let { data } = res;
+      if (data.message == "删除成功") {
+        this.getCompleted();
+        Toast.success("订单删除成功");
       }
     },
 
@@ -210,6 +226,11 @@ export default {
       let res = await get("/order/completed", params);
       this.completedList = JSON.parse(res.data.data);
     },
+
+    // 购物车结算按钮
+    onSubmit() {
+      console.log("111");
+    },
   },
 };
 </script>
@@ -229,12 +250,13 @@ a {
 }
 .main {
   background-color: #f0f0f0;
-  height: 848px;
+  height: 100vh;
   .unpaid {
     position: relative;
-    height: 803px;
+    height: calc(~"100vh" - 90px);
     .settlement {
-      position: absolute;
+      position: fixed !important;
+      bottom: 0;
     }
   }
   .product_card {

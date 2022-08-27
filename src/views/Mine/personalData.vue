@@ -1,7 +1,7 @@
 <!--
  * @Author: LuZeng
  * @Date: 2022-08-23 20:18:35
- * @LastEditTime: 2022-08-25 14:17:06
+ * @LastEditTime: 2022-08-26 16:51:32
  * @LastEditors: LuZeng
  * @Description: 小白本白，写的不好多多包涵！！！
  * @FilePath: \jsd:\rjiananzhuang\WEB\WEB workspace\实训三\练习\briup-wisdom-order\src\views\Mine\personalData.vue
@@ -16,9 +16,11 @@
         :border="border"
         title="个人明片"
         left-text="返回"
-        right-text="修改"
+        :right-text="rightText"
         left-arrow
+        fixed
         @click-left="onClickLeft"
+        @click-right="onClickRight"
       />
       <div class="container">
         <div class="card">
@@ -31,27 +33,51 @@
             </li>
             <li>
               <h4>姓名</h4>
-              <p>{{ userInfo.fullname }}</p>
+              <input
+                type="text"
+                v-model="userInfo.fullname"
+                :disabled="disabled"
+              />
             </li>
             <li>
               <h4>爱好</h4>
-              <p>{{ userInfo.hobby }}</p>
+              <input
+                type="text"
+                v-model="userInfo.hobby"
+                :disabled="disabled"
+              />
             </li>
             <li>
               <h4>出生日期</h4>
-              <p>{{ userInfo.brith }}</p>
+              <input
+                type="text"
+                v-model="userInfo.brith"
+                :disabled="disabled"
+              />
             </li>
             <li>
               <h4>邮箱</h4>
-              <p>{{ userInfo.email }}</p>
+              <input
+                type="text"
+                v-model="userInfo.email"
+                :disabled="disabled"
+              />
             </li>
             <li>
               <h4>个性签名</h4>
-              <p>{{ userInfo.autograph }}</p>
+              <input
+                type="text"
+                v-model="userInfo.autograph"
+                :disabled="disabled"
+              />
             </li>
             <li>
               <h4>专业</h4>
-              <p>{{ userInfo.industry }}</p>
+              <input
+                type="text"
+                v-model="userInfo.industry"
+                :disabled="disabled"
+              />
             </li>
           </ol>
         </div>
@@ -62,12 +88,15 @@
 
 <script>
 import { get } from "@/http/axios";
+import { Toast } from "vant";
 export default {
   data() {
     return {
       border: false,
       username: "",
       userInfo: {},
+      rightText: "修改",
+      disabled: true,
     };
   },
   created() {
@@ -86,18 +115,51 @@ export default {
       };
       let res = await get("/mine/findOwn", params);
       let { data } = res.data;
-      console.log(data);
       this.userInfo = data;
     },
     // 点击返回上一层
     onClickLeft() {
       this.$router.go(-1);
     },
+    // 修改个人信息按钮
+    // 思路：该点击事件是实现修改与保存之间的来回切换，
+    // 修改期间input不可以操作，保存期间input可以操作，
+    async onClickRight() {
+      if (this.rightText == "修改") {
+        this.disabled = false;
+        this.rightText = "保存";
+        Toast("请进行修改");
+      } else {
+        this.disabled = true;
+        this.rightText = "修改";
+        // 发送请求，保存修改后的数据
+        // 定义发送对象(取出多余数据，如购物车一系列)
+        let obj = {
+          name: this.username,
+          fullname: this.userInfo.fullname,
+          hobby: this.userInfo.hobby,
+          brith: this.userInfo.brith,
+          email: this.userInfo.email,
+          autograph: this.userInfo.autograph,
+          industry: this.userInfo.industry,
+        };
+        obj = JSON.stringify(obj);
+        let params = {
+          obj,
+        };
+        let res = await get("/mine/updateOwnData", params);
+        if (res.data.message == "更新成功") {
+          Toast.success("保存成功");
+        } else {
+          Toast.fail("保存失败");
+        }
+      }
+    },
   },
 };
 </script>
 
-<style scoped lang="less">
+<style  lang="less">
 * {
   margin: 0;
   padding: 0;
@@ -108,6 +170,7 @@ ol {
 }
 .main {
   position: relative;
+  height: calc(~"100vh" - 30px);
   .container {
     width: 100%;
     height: 848px;
@@ -118,7 +181,7 @@ ol {
     .card {
       width: 95%;
       height: 60%;
-      margin: 73% auto;
+      margin: 85% auto;
       background-color: #fff;
       border-radius: 10px;
       box-shadow: 0 0 5px 0 rgba(234, 218, 255, 1);
@@ -135,10 +198,10 @@ ol {
             display: inline-block;
             width: 25%;
           }
-          p {
-            display: inline-block;
-            width: 70%;
-            color: #727171;
+          input {
+            background-color: #fff;
+            border: 0;
+            color: #7d7d7d;
           }
         }
         li:not(:nth-child(1)) {

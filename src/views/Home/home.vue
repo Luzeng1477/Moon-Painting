@@ -1,7 +1,7 @@
 <!--
  * @Author: LuZeng
  * @Date: 2022-08-08 19:11:19
- * @LastEditTime: 2022-08-25 20:00:21
+ * @LastEditTime: 2022-08-26 20:13:07
  * @LastEditors: LuZeng
  * @Description: 小白本白，写的不好多多包涵！！！
  * @FilePath: \jsd:\rjiananzhuang\WEB\WEB workspace\实训三\练习\briup-wisdom-order\src\views\Home\home.vue
@@ -37,7 +37,7 @@
         :key="item.id"
         @click="getProductDetail(item.id)"
       >
-        <img :data-url="item.photo" :src="item.photo" alt="" />
+        <img v-lazy="item.photo" :key="item.photo" />
         <p>{{ item.name }}</p>
         <span class="price">￥{{ item.price }}</span>
         <span class="collect">{{ item.pay_people }}人付款</span>
@@ -56,11 +56,11 @@ export default {
       page: 1,
       pageSize: 5,
       text: [
-        { name: "家用电器", icon: "wap-home-o", id: 1 },
-        { name: "器械工具", icon: "brush-o", id: 2 },
-        { name: "穿着衣物", icon: "like-o", id: 3 },
-        { name: "风景盆栽", icon: "setting-o", id: 4 },
-        { name: "日常除虫", icon: "cashier-o", id: 5 },
+        { name: "人物插画", icon: "friends", id: 1 },
+        { name: "美食插画", icon: "star", id: 2 },
+        { name: "场景插画", icon: "shop-collect", id: 3 },
+        { name: "动漫插画", icon: "smile", id: 4 },
+        { name: "人物漫画", icon: "manager", id: 5 },
       ],
     };
   },
@@ -76,7 +76,7 @@ export default {
     toProductPage(name) {
       // 页面跳转
       this.$router.push({
-        path: "product",
+        path: "/product",
         query: { name },
       });
     },
@@ -84,7 +84,7 @@ export default {
     getProductDetail(id) {
       // 页面跳转
       this.$router.push({
-        path: "ProductDetail",
+        path: "/ProductDetail",
         query: { id },
       });
     },

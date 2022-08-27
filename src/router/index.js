@@ -26,6 +26,24 @@ const routes = [
     name: "Register",
     component: () => import("@/views/Register.vue"),
   },
+  // 个人信息路由
+  {
+    path: "/personalData",
+    name: "PersonalData",
+    component: () => import("@/views/Mine/personalData.vue"),
+  },
+  // 产品页面
+  {
+    path: "/product",
+    name: "Product",
+    component: () => import("@/views/Product/product.vue"),
+  },
+  // 产品详情
+  {
+    path: "/ProductDetail",
+    name: "ProductDetail",
+    component: () => import("@/views/Product/productDetail.vue"),
+  },
   // 总路由
   {
     path: "/manager",
@@ -58,21 +76,7 @@ const routes = [
         path: "address",
         component: () => import("@/views/Mine/address.vue"),
       },
-      // 产品页面
-      {
-        path: "product",
-        component: () => import("@/views/Product/product.vue"),
-      },
-      // 产品详情
-      {
-        path: "ProductDetail",
-        component: () => import("@/views/Product/productDetail.vue"),
-      },
-      // 个人信息界面
-      {
-        path: "personalData",
-        component: () => import("@/views/Mine/personalData.vue"),
-      },
+
       // 订单提交页面
       {
         path: "orderConfirm",

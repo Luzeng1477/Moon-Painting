@@ -1,7 +1,7 @@
 <!--
  * @Author: LuZeng
  * @Date: 2022-08-17 19:04:51
- * @LastEditTime: 2022-08-25 10:35:46
+ * @LastEditTime: 2022-08-26 15:38:03
  * @LastEditors: LuZeng
  * @Description: 小白本白，写的不好多多包涵！！！
  * @FilePath: \jsd:\rjiananzhuang\WEB\WEB workspace\实训三\练习\briup-wisdom-order\src\views\Product\productDetail.vue
@@ -14,6 +14,7 @@
       left-text="返回"
       right-text="更多"
       left-arrow
+      fixed
       @click-left="onClickLeft"
       bind:click-right="onClickRight"
     />
@@ -81,6 +82,8 @@
         </div>
       </div>
     </footer>
+
+    <div class="occupy"></div>
   </div>
 </template>
 <script>
@@ -298,10 +301,10 @@ export default {
   }
   // 加入购物车模块
   footer {
-    position: absolute;
+    position: fixed;
+    bottom: 0;
     width: 100%;
     height: 60px;
-    z-index: 1000;
     display: flex;
     flex-direction: row;
     background-color: #fff;
@@ -342,10 +345,13 @@ export default {
 }
 .main img {
   width: 100%;
-  height: 320px;
+  height: 60vh;
 }
 .w {
   width: 94%;
   margin: auto;
+}
+.occupy {
+  height: 70px;
 }
 </style>

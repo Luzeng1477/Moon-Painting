@@ -1,10 +1,10 @@
 <!--
  * @Author: LuZeng
  * @Date: 2021-05-10 15:59:26
- * @LastEditTime: 2022-08-08 19:09:42
+ * @LastEditTime: 2022-08-26 15:10:33
  * @LastEditors: LuZeng
  * @Description: 小白本白，写的不好多多包涵！！！
- * @FilePath: \ThreeNoded:\rjiananzhuang\WEB\WEB workspace\实训三\练习\house\briup-wisdom-order\briup-wisdom-order\src\App.vue
+ * @FilePath: \jsd:\rjiananzhuang\WEB\WEB workspace\实训三\练习\briup-wisdom-order\src\App.vue
  * 别乱动！
 -->
 <template>
@@ -26,6 +26,6 @@ export default {
 html,
 body,
 #app {
-  height: 100%;
+  height: 100vh;
 }
 </style>
