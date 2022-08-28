@@ -1,7 +1,7 @@
 <!--
  * @Author: LuZeng
  * @Date: 2022-08-08 19:11:19
- * @LastEditTime: 2022-08-26 18:48:27
+ * @LastEditTime: 2022-08-27 09:10:35
  * @LastEditors: LuZeng
  * @Description: 小白本白，写的不好多多包涵！！！
  * @FilePath: \jsd:\rjiananzhuang\WEB\WEB workspace\实训三\练习\briup-wisdom-order\src\views\Product\product.vue
@@ -27,7 +27,7 @@
         :key="item.id"
         @click="getProductDetail(item.id)"
       >
-        <img :data-url="item.photo" :src="item.photo" alt="" />
+        <img v-lazy="item.photo" :key="item.photo" />
         <p>{{ item.name }}</p>
         <span class="price">￥{{ item.price }}</span>
         <span class="collect">{{ item.pay_people }}人付款</span>

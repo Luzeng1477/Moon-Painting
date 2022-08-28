@@ -1,7 +1,7 @@
 <!--
  * @Author: LuZeng
  * @Date: 2022-08-08 19:11:19
- * @LastEditTime: 2022-08-26 19:53:55
+ * @LastEditTime: 2022-08-27 15:03:05
  * @LastEditors: LuZeng
  * @Description: 小白本白，写的不好多多包涵！！！
  * @FilePath: \jsd:\rjiananzhuang\WEB\WEB workspace\实训三\练习\briup-wisdom-order\src\views\Order\order.vue
@@ -49,11 +49,11 @@
             class="settlement"
             :price="settlement"
             button-text="结算"
-            bind:submit="onSubmit"
+            @click="onSubmit"
           />
         </van-tab>
-        <!-- 待发货 -->
-        <van-tab class="whole" style="overflow: scroll" title="待发货">
+        <!-- 待收货 -->
+        <van-tab class="whole" style="overflow: scroll" title="待收货">
           <!-- 自定义商品卡片 -->
           <div
             class="product_card card"
@@ -229,7 +229,7 @@ export default {
 
     // 购物车结算按钮
     onSubmit() {
-      console.log("111");
+      alert("1");
     },
   },
 };
